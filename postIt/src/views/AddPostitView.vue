@@ -53,17 +53,17 @@ async addPostit(){
 </script>
 
 <template>
-    <div id="postit">
+    <div class="card shadow rounded col-sm-10" id="postit">
     <form v-on:submit.prevent="addPostit">
-        <div class="mb-3">
+        <div class="m-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" class="form-control" v-model="postitTitle" aria-describedby="postit title" maxlength="50" required>
         </div>
-        <div class="mb-3">
+        <div class="m-3">
             <label for="content" class="form-label">Content</label>
             <input type="text" class="form-control" v-model="postitContent" aria-describedby="postit content" required>
         </div>
-        <button type="submit" class="btn btn-primary">Save note</button>
+        <button type="submit" class="btn btn-primary m-3">Save note</button>
     </form>
     </div>
 </template>

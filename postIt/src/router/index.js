@@ -11,15 +11,6 @@ const router = createRouter({
       name: 'home',
       component: HomeView
     },
-    /*{
-      path: '/note',
-      name: 'note',
-      component: Note
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      //component: () => import('../views/Note.vue')
-    },*/
     {
       path: '/note/:id',
       component: () =>import('../views/ShowNote.vue')
@@ -34,3 +25,8 @@ const router = createRouter({
 })
 
 export default router
+
+/* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+particlesJS.load('particles-js', 'assets/particles.json', function() {
+  console.log('callback - particles.js config loaded');
+});

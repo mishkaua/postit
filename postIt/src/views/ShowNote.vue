@@ -36,7 +36,20 @@ import { reactive, computed } from 'vue'
                     console.log(error.response)
                 })
                 window.location.href = "/"
-        }
+        },
+            async editPostit() {
+                const dataToUpdate = {
+                    title: this.postit.title,
+                    content: [this.postit.content]
+                };
+                axios.put(`http://mattmcm.fr:7754/notes/${this.noteId}`, dataToUpdate)
+                .then(response => {
+                    console.log("Data updated successfully:", response.data);
+                })
+                .catch(error => {
+                    console.error("Error updating data:", error);
+                });
+            }
     }
 }
 </script>
@@ -44,18 +57,17 @@ import { reactive, computed } from 'vue'
 <template>
 
 <div class="container">
-    <h1>Hello my favourite note number {{ $route.params.id }}</h1>
         <div class="note">
             <div class="container">
-                <div class="col-sm-6" id="postit">
+                <div class="col-sm-10" id="postit">
                     <div class="card shadow rounded">
-                        <div class="card-body mb-2">
+                        <div v-bind:style="{backgroundColor: this.postit.color}" class="card-body mb-2">
                             <label for="id" class="form-label">Id</label>
                             <p class="card-title form-control"> {{ this.postit._id }}</p>
                             <label for="title" class="form-label">Title</label>
-                            <input type="text" class="card-title form-control" v-bind:placeholder="this.postit.title">
+                            <input type="text" id="title" class="card-title form-control" v-model="this.postit.title"/>
                             <label for="content" class="form-label">Content</label>
-                            <textarea class="card-title form-control" rows="3">{{ this.postit.content }}</textarea>
+                            <input type="text" id="content" class="card-title form-control" v-model="this.postit.content"/>
                             <a href="/" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="22"
                                     height="22" fill="currentColor" class="bi bi-arrow-left-circle p-1" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -63,7 +75,7 @@ import { reactive, computed } from 'vue'
                                 </svg>Back to postit list</a>
                         </div>
                         <div class="card-footer">
-                            <router-link to="" class="btn btn-success mx-3">Edit</router-link>
+                            <router-link to="" class="btn btn-success mx-3" @click.prevent="editPostit">Edit</router-link>
                             <router-link to="" class="btn btn-danger" @click.prevent="deletePostit">Delete</router-link>
                         </div>
                     </div>

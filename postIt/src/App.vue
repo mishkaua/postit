@@ -7,8 +7,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
     <div id="nav">
-    <router-link to="/">Home</router-link>  |
-    <router-link to="/note/:id">Note</router-link>
+    <router-link to="/">Home</router-link>
   </div>
   <div class="container">
       <router-view></router-view>
