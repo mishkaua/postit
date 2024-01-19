@@ -45,7 +45,7 @@ async addPostit(){
         } else {
             console.log("Invalid data format")
     }
-    window.location.href = "/"
+    //window.location.href = "/"
 }
     }
 }
